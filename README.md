@@ -1,8 +1,8 @@
 # historic-results
-This is a template for an open archive for capturing the history of the sport in a crowdsourced manner.
+This is a template repo for an open archive for capturing the history of the sport in a crowdsourced manner.
 
-For the moment, it's a design in a README.  If other like the idea, I'd move the repo
-into the `openathletics` GutHub organisation.
+For the moment, it's just a README with an overview of the idea.  If other like the idea, I'd move the repo
+into the `openathletics` GitHub organisation, and try to set up the environments.
 
 The rough scope in mind...
 1. Allow anyone to upload old results and heritage materials (e.g. PDF and scans) into a safe location, tagging things at the time to give some clues about what they relate to (e.g. year, location, competition name)
