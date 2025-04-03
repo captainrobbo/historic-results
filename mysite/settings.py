@@ -117,7 +117,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_HOST = "https://dos3b38mjx5bt.cloudfront.net." if not DEBUG else ""
+STATIC_HOST = "https://dos3b38mjx5bt.cloudfront.net" if not DEBUG else ""
 STATIC_URL = STATIC_HOST + "/static/"
 
 # Default primary key field type
