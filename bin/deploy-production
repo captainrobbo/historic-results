@@ -27,19 +27,15 @@ if [[ $LOCAL_CHANGES ]]; then
     err "You have local changes. Please commit and push before deploying."
     exit 1
 fi
-git checkout master
+git checkout main
 MASTER_REV="$(git rev-parse --short HEAD)"
-rm -f project/static/revision.txt   # ensure no debris from previous runs
+rm -f mysite/static/revision.txt   # ensure no debris from previous runs
 git checkout deploy-production
 git pull
-git merge master -m "Merge branch 'master' into deploy-production" --no-ff
-echo "PROD master rev=$MASTER_REV @ $(date -u +%Y%m%dU%H%M%S)" > project/static/revision.txt
-git add project/static/revision.txt
+git merge main -m "Merge branch 'main' into deploy-production" --no-ff
+echo "PROD master rev=$MASTER_REV @ $(date -u +%Y%m%dU%H%M%S)" > mysite/static/revision.txt
+git add mysite/static/revision.txt
 git commit -a -m "deploy to AWS production"
 git push --set-upstream origin
-git checkout master
+git checkout main
 
-if ! $silent; then
-	GOOGLE_CHAT_WEBHOOK_LINK="https://chat.googleapis.com/v1/spaces/AAAA4EpUJSg/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=bpvbOekeuFOZ8B9RseoHxXutNT_Ax1_3LQg1qe5-GLk"
-	curl --silent --output /dev/null -X POST -H 'Content-Type: application/json' -d '{"text": "The LIVE server will have the latest changes in 15mins"}' $GOOGLE_CHAT_WEBHOOK_LINK
-fi
