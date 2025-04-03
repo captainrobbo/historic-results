@@ -34,7 +34,8 @@ OpenTrack could potentially provide some resources, if it's the "tools we know".
 - test environment always available, either ongoing or as temporary "review apps"
 - a script to quickly pull down all assets and set up a local copy for development
 - freedom to use any front end framework (JS/CSS) - we're agnostic, but Bootstrap is usually a good start
-- whitenoise to compress/verify 
+- whitenoise to compress/verify static content
+- support for django-channels
 
 We could set this up quite quickly as an app that "does very little yet", but has all the above elements
 
@@ -53,4 +54,6 @@ We're hoping to find a mixture of
   
 ## How to get involved
 Discuss at https://forum.openathletics.net/
+
+
 
