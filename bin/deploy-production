@@ -1,0 +1,41 @@
+#!/bin/bash
+PROG=$(basename $0)
+_msg(){
+	echo "$1 $PROG@$(date -u +%Y%m%d%H%M%S): $2"
+}
+
+msg(){
+	_msg '+++++' "$1"
+}
+
+err(){
+	_msg '!!!!!' "$1"
+}
+
+silent='false'
+
+while getopts 's' flag; do
+  case "${flag}" in
+    s) silent='true' ;;
+    *) print_usage
+       exit 1 ;;
+  esac
+done
+
+LOCAL_CHANGES=`git diff`
+if [[ $LOCAL_CHANGES ]]; then
+    err "You have local changes. Please commit and push before deploying."
+    exit 1
+fi
+git checkout main
+MASTER_REV="$(git rev-parse --short HEAD)"
+rm -f mysite/static/revision.txt   # ensure no debris from previous runs
+git checkout deploy-production
+git pull
+git merge main -m "Merge branch 'main' into deploy-production" --no-ff
+echo "PROD master rev=$MASTER_REV @ $(date -u +%Y%m%dU%H%M%S)" > mysite/static/revision.txt
+git add mysite/static/revision.txt
+git commit -a -m "deploy to AWS production"
+git push --set-upstream origin
+git checkout main
+
