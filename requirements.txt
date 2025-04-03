@@ -1,2 +1,4 @@
 Django
 whitenoise==6.9.0
+gunicorn
+django-alive
