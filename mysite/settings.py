@@ -28,11 +28,7 @@ if "amazonaws.com" in os.environ.get("DATABASE_URL", ""):
 SECRET_KEY = 'django-insecure-d@y%yu3c5@c$1m#wh-5vkb^=h&h__xolsds&u5l25@e1plk7+r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-<<<<<<< HEAD
-DEBUG = False
-=======
 DEBUG = (not LIVE)
->>>>>>> main
 
 ALLOWED_HOSTS = ["*"]
 
