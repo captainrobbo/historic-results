@@ -1,3 +1,3 @@
 {
-  "buildpacks": [{"url": "heroku/python", "url": "heroku/procfile"}]
+  "buildpacks": [{"url": "heroku/python"}, {"url": "heroku/procfile"}]
 }
