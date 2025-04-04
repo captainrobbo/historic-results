@@ -19,6 +19,8 @@ from django.urls import path, include
 
 from main.views import index
 
+from .views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("-/", include("django_alive.urls")),
