@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -87,12 +89,21 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+if "DATABASE_URL" in os.environ:
+    DATABASES = {"default": dj_database_url.parse(os.environ["DATABASE_URL"])}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'historic-results',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': ''
+        }
     }
-}
+#mysql://historic-results:j9E7hSjHryANDs6U3e7vzkQAI7LKwR@apppack-database-opentrack-cluster-1uy49ker94x74.cluster-c4z06eo8x7sa.eu-west-2.rds.amazonaws.com:3306/historic-results
 
 
 # Password validation
