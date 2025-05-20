@@ -1,3 +1,7 @@
 {
-  "buildpacks": [{"url": "heroku/python"}, {"url": "heroku/procfile"}]
+  "buildpacks": [
+    {"url": "heroku/python"}, 
+    {"url": "heroku/procfile"},
+    {"url": "https://buildpack-registry.heroku.com/cnb/heroku-community/apt"}
+  ]
 }
